@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 
-# for reading excel files
+# For reading excel files
 import openpyxl
 
-# load dataset into pandas dataframe
+# Load dataset into pandas dataframe
 file_path = 'a1/real_estate_data.xlsx'
 df = pd.read_excel(file_path)
 
@@ -24,14 +24,14 @@ y_train = y[:325]
 X_test = X[325:]
 y_test = y[325:]
 
-# Evaluate θ = X^T X^(-1) X^T y
+# Evaluate (estimated) θ = (X^T * X)^(-1) * X^T * y
 X_transpose = X_train.T
 theta = np.linalg.inv(X_transpose @ X_train) @ X_transpose @ y_train
 
 # Print estimated θ
 print('Estimated coefficient values:', theta)
 
-# Print estimated y
+# Print estimated y (testing the model)
 y_test_predicted = X_test @ theta
 print('Predicted prices:', y_test_predicted)
 
@@ -42,4 +42,4 @@ print('Mean Squared Error for Test Set:', mse_test)
 # Calculate MSE for training set
 y_train_predicted = X_train @ theta
 mse_train = np.mean((y_train_predicted - y_train) ** 2)
-print('Mean Squared Error for Train Set:', mse_train)
+print('Mean Squared Error for Training Set:', mse_train)
