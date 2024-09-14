@@ -35,11 +35,13 @@ print('Estimated coefficient values:', theta)
 y_test_predicted = X_test @ theta
 print('Predicted prices:', y_test_predicted)
 
-# Calculate MSE for test set
-mse_test = np.mean((y_test_predicted - y_test) ** 2)
-print('Mean Squared Error for Test Set:', mse_test)
-
 # Calculate MSE for training set
 y_train_predicted = X_train @ theta
 mse_train = np.mean((y_train_predicted - y_train) ** 2)
-print('Mean Squared Error for Training Set:', mse_train)
+print('Mean Squared Error for Training Set:', mse_train) # ~91
+
+# Calculate MSE for test set
+mse_test = np.mean((y_test_predicted - y_test) ** 2)
+print('Mean Squared Error for Test Set:', mse_test) # ~64
+
+# exited with code=0 in 0.952 seconds
