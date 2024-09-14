@@ -32,5 +32,14 @@ theta = np.linalg.inv(X_transpose @ X_train) @ X_transpose @ y_train
 print('Estimated coefficient values:', theta)
 
 # Print estimated y
-y_predicted = X_test @ theta
-print('Predicted prices:', y_predicted)
+y_test_predicted = X_test @ theta
+print('Predicted prices:', y_test_predicted)
+
+# Calculate MSE for test set
+mse_test = np.mean((y_test_predicted - y_test) ** 2)
+print('Mean Squared Error for Test Set:', mse_test)
+
+# Calculate MSE for training set
+y_train_predicted = X_train @ theta
+mse_train = np.mean((y_train_predicted - y_train) ** 2)
+print('Mean Squared Error for Train Set:', mse_train)
