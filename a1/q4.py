@@ -13,5 +13,13 @@ features = df[['X2 house age', 'X3 distance to the nearest MRT station', 'X4 num
 target = df['Y house price of unit area']
 
 # Create matrix X
-X = np.c_[np.ones(features.shape[0]), features] 
+X = np.c_[np.ones(features.shape[0]), features] # np.c concatanes the columns
 y = target.values
+
+# Training data
+X_train = X[:325]
+y_train = y[:325]
+
+# Test data
+X_test = X[325:]
+y_test = y[325:]
