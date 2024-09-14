@@ -23,3 +23,7 @@ y_train = y[:325]
 # Test data
 X_test = X[325:]
 y_test = y[325:]
+
+# Evaluate θ = X^T X^(-1) X^T y
+X_transpose = X_train.T
+theta = np.linalg.inv(X_transpose @ X_train) @ X_transpose @ y_train
