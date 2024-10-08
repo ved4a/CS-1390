@@ -86,15 +86,15 @@ def gradient_descent(theta, X, y, alpha = 0.1, iters = 500):
     return theta
 
 # create hypothesis function
-def h_theta(x):
-    x_matrix = np.matrix(X)
-    h_matrix = np.empty((k, 1)) # empty matrix h to store probabilities
-    denominator = 0
-    for j in range(0, k):
-        denominator += math.exp(np.dot(theta_hat[j].T, x_matrix))
-    for i in range(0, k):
-        h_matrix[i] = math.exp(np.dot(theta_hat[i].T, x_matrix))
-    h_matrix = h_matrix/denominator
+def h_theta(x, theta):
+    k = theta.shape[0] # no of classes
+    h_matrix = np.zeros(k) # empty matrix h to store probabilities
+
+    denominator = np.sum([np.exp(np.dot(theta[j].T, x)) for j in range(k)])
+
+    for i in range(k):
+        h_matrix[i] = np.exp(np.dot(theta[i].T, x)) / denominator
+    
     return h_matrix
 
 # define features and training examples
