@@ -57,3 +57,11 @@ def phi(i, theta, x):
         denominator += math.exp(np.dot(theta_j_matrix.T, x_matrix))
     phi_i = numerator / denominator
     return phi_i
+
+# create indicator function:
+def indicator(a, b):
+    if (a == b):
+        return 1
+    else:
+        return 0
+    
