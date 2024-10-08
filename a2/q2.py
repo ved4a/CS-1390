@@ -54,10 +54,7 @@ def phi(i, theta, x, k):
 
 # create indicator function:
 def indicator(a, b):
-    if (a == b):
-        return 1
-    else:
-        return 0
+    return 1 if a == b else 0
 
 # derivative fun used to update θj:
 def derivative(j, theta):
