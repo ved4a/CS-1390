@@ -6,7 +6,23 @@ iris = fetch_ucirepo(id=53)
   
 # Data (as pandas dataframes) 
 X = iris.data.features 
-y = iris.data.targets 
+y = iris.data.targets
+
+# Examine structure of data
+# check dimensions
+print(X.shape)
+print(y.shape)
+
+# view first 5 rows
+print(X.head())
+print(y.head())
+
+# column names + data types
+print(X.columns)
+print(X.dtypes)
+
+# statistical summary
+print(X.describe)
 
 # Check if there any missing values, and how many
 missing_X = X.isnull().sum()
