@@ -111,4 +111,4 @@ X_test_scaled = np.c_[np.ones(X_test_scaled.shape[0]), X_test_scaled]
 theta = np.empty((k, n + 1))
 
 # apply gradient descent function
-theta_hat = gradient_descent(theta)
+theta_hat = gradient_descent(theta, alpha=0.1, iters=500)
