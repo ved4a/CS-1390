@@ -27,7 +27,7 @@ print(X.columns)
 print(X.dtypes)
 
 # statistical summary
-print(X.describe)
+print(X.describe())
 
 # Check if there any missing values, and how many
 missing_X = X.isnull().sum()
