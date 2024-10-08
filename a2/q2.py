@@ -2,6 +2,7 @@ from ucimlrepo import fetch_ucirepo
 
 import pandas as pd
 import numpy as np
+import math
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
   
@@ -43,3 +44,16 @@ scaled_X = scaler.fit_transform(X)
 train, test = train_test_split(iris, test_size=0.3)
 train = train.reset_index()
 test = test.reset_index()
+
+# Implement a softmax regression classifier from scratch
+# write function to calculate φ:
+def phi(i, theta, x):
+    theta_matrix = np.matrix(theta[i]) # create matrix θ
+    x_matrix = np.matrix(x) # create matrix x
+    numerator = math.exp(np.dot(theta_matrix.T, x_matrix))
+    denominator = 0
+    for j in range (0, k):
+        theta_j_matrix = np.matrix(theta[j])
+        denominator += math.exp(np.dot(theta_j_matrix.T, x_matrix))
+    phi_i = numerator / denominator
+    return phi_i
