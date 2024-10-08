@@ -2,6 +2,7 @@ from ucimlrepo import fetch_ucirepo
 
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
   
 # Fetch dataset 
 iris = fetch_ucirepo(id=53) 
@@ -32,9 +33,7 @@ missing_Y = y.isnull().sum()
 
 print("Missing values in features:\n", missing_X) # none
 print("\nMissing values in targets:\n", missing_Y) # none
-  
-# metadata 
-# print(iris.metadata) 
-  
-# variable information 
-# print(iris.variables) 
+
+# Implementing feature scaling using min-max scaling
+scaler = MinMaxScaler()
+scaled_X = scaler.fit_transform(X)
