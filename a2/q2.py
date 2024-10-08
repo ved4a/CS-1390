@@ -41,9 +41,8 @@ scaler = MinMaxScaler()
 scaled_X = scaler.fit_transform(X)
 
 # Split data into training and test sets
-train, test = train_test_split(iris, test_size=0.3)
-train = train.reset_index()
-test = test.reset_index()
+# specify the random state as answer to the ultimate question of life, the universe, and everything
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
 # Implement a softmax regression classifier from scratch
 # write function to calculate φ:
