@@ -97,3 +97,9 @@ def h_theta(x):
 # define features and training examples
 n = X.shape[1]
 m = X.shape[0]
+
+# define k & map diff species to numbers (0,1,2)
+Y = train['Species']
+k = len(y.unique())
+y = y.map({'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2})
+y.value_counts()
