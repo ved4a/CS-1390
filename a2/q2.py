@@ -106,3 +106,6 @@ y.value_counts()
 # add column of 1s for intercept term
 X[5] = np.ones(X.shape[0])
 X.shape
+
+# initialize θ as empty matrix
+theta = np.empty((k, n + 1))
