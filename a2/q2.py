@@ -93,3 +93,7 @@ def h_theta(x):
         h_matrix[i] = math.exp(np.dot(theta_hat[i].T, x_matrix))
     h_matrix = h_matrix/denominator
     return h_matrix
+
+# define features and training examples
+n = X.shape[1]
+m = X.shape[0]
