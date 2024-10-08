@@ -1,5 +1,7 @@
 from ucimlrepo import fetch_ucirepo
+
 import pandas as pd
+import numpy as np
   
 # Fetch dataset 
 iris = fetch_ucirepo(id=53) 
