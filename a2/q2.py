@@ -47,14 +47,11 @@ X_test_scaled = scaler.transform(X_test)
 
 # Implement a softmax regression classifier from scratch
 # write function to calculate φ:
-def phi(i, theta, x):
+def phi(i, theta, x, k):
     theta_matrix = np.matrix(theta[i]) # create matrix θ
     x_matrix = np.matrix(x) # create matrix x
-    numerator = math.exp(np.dot(theta_matrix.T, x_matrix))
-    denominator = 0
-    for j in range (0, k):
-        theta_j_matrix = np.matrix(theta[j])
-        denominator += math.exp(np.dot(theta_j_matrix.T, x_matrix))
+    numerator = np.exp(np.dot(theta_matrix.T, x_matrix))
+    denominator = np.sum([np.exp(np.dot(theta[j].T, x)) for j in range(k)]) # sum over all classes
     phi_i = numerator / denominator
     return phi_i
 
