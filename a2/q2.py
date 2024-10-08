@@ -41,3 +41,5 @@ scaled_X = scaler.fit_transform(X)
 
 # Split data into training and test sets
 train, test = train_test_split(iris, test_size=0.3)
+train = train.reset_index()
+test = test.reset_index()
