@@ -109,3 +109,6 @@ X.shape
 
 # initialize θ as empty matrix
 theta = np.empty((k, n + 1))
+
+# apply gradient descent function
+theta_hat = gradient_descent(theta)
