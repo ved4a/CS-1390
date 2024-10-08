@@ -36,13 +36,14 @@ missing_Y = y.isnull().sum()
 print("Missing values in features:\n", missing_X) # none
 print("\nMissing values in targets:\n", missing_Y) # none
 
-# Implementing feature scaling using min-max scaling
-scaler = MinMaxScaler()
-scaled_X = scaler.fit_transform(X)
-
 # Split data into training and test sets
 # specify the random state as answer to the ultimate question of life, the universe, and everything
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Implementing feature scaling using min-max scaling
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.fit_transform(X_test)
 
 # Implement a softmax regression classifier from scratch
 # write function to calculate φ:
