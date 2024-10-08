@@ -1,4 +1,5 @@
-from ucimlrepo import fetch_ucirepo 
+from ucimlrepo import fetch_ucirepo
+import pandas as pd
   
 # fetch dataset 
 iris = fetch_ucirepo(id=53) 
@@ -8,7 +9,7 @@ X = iris.data.features
 y = iris.data.targets 
   
 # metadata 
-print(iris.metadata) 
+# print(iris.metadata) 
   
 # variable information 
-print(iris.variables) 
+# print(iris.variables) 
