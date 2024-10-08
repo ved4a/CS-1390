@@ -102,3 +102,7 @@ m = X.shape[0]
 k = len(y.unique())
 y = y.map({'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2})
 y.value_counts()
+
+# add column of 1s for intercept term
+X[5] = np.ones(X.shape[0])
+X.shape
