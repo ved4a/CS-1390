@@ -101,7 +101,7 @@ def h_theta(x, theta):
     return h_matrix
 
 # define features and training examples
-n = X_train_scaled.shape[1]
+n = X_train_scaled.shape[1] - 1 # to account for bias term
 m = X_train_scaled.shape[0]
 k = len(np.unique(y_train))
 
