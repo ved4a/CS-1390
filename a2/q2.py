@@ -71,11 +71,18 @@ def derivative(j, theta, X, y, m, k):
     return -gradient_sum / m # avg over m training examples
 
 # implement actual gradient descent
-def gradient_descent(theta, alpha = 0.1, iters = 500):
-    for j in range(0, k):
-        for iter in range(iters):
-            theta[j] = theta[j] - alpha * derivative(j, theta)
-    print('Running iterations')
+def gradient_descent(theta, X, y, alpha = 0.1, iters = 500):
+    m = X.shape[0] # no of examples
+    k = theta.shape[0] # no of classes
+
+    for iteration in range(iters):
+        for j in range(k): # update for each class
+            gradient = derivative(j, theta, X, y, m, k) # compute grad for class j
+            theta[j] -= alpha * gradient
+
+        if iteration % 100 == 0:
+            print(f"Iteration {iteration}: Theta Updated.")
+
     return theta
 
 # create hypothesis function
