@@ -57,13 +57,18 @@ def indicator(a, b):
     return 1 if a == b else 0
 
 # derivative fun used to update θj:
-def derivative(j, theta):
-    sum = np.array([0 for i in range(0, n + 1)]) # n is no of features
-    for i in range(0, m):
-        p = indicator(y[i], j) - phi(j, theta, x.loc[i])
-        sum += (x.loc[i] *p)
-    gradient = -sum / m # m is no of training examples
-    return gradient
+def derivative(j, theta, X, y, m, k):
+    gradient_sum = np.zeros(theta.shape[1]) # initialize to 0
+
+    for i in range(m):
+        xi = X[i]
+        yi = y[i]
+
+        error = indicator(yi, j) - phi(j, theta, xi, k)
+
+        gradient_sum += xi * error
+
+    return -gradient_sum / m # avg over m training examples
 
 # implement actual gradient descent
 def gradient_descent(theta, alpha = 0.1, iters = 500):
