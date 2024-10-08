@@ -103,9 +103,9 @@ k = len(y.unique())
 y = y.map({'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2})
 y.value_counts()
 
-# add column of 1s for intercept term
-X[5] = np.ones(X.shape[0])
-X.shape
+# add column of 1s for intercept term for both training and test sets
+X_train_scaled = np.c_[np.ones(X_train_scaled.shape[0]), X_train_scaled]
+X_test_scaled = np.c_[np.ones(X_test_scaled.shape[0]), X_test_scaled]
 
 # initialize θ as empty matrix
 theta = np.empty((k, n + 1))
