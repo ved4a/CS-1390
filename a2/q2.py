@@ -73,3 +73,11 @@ def derivative(j, theta):
         sum += (x.loc[i] *p)
     gradient = -sum / m # m is no of training examples
     return gradient
+
+# implement actual gradient descent
+def gradient_descent(theta, alpha = 0.1, iters = 500):
+    for j in range(0, k):
+        for iter in range(iters):
+            theta[j] = theta[j] - alpha * derivative(j, theta)
+    print('Running iterations')
+    return theta
