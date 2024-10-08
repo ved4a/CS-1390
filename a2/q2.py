@@ -98,8 +98,9 @@ def h_theta(x, theta):
     return h_matrix
 
 # define features and training examples
-n = X.shape[1]
-m = X.shape[0]
+n = X_train_scaled.shape[1]
+m = X_train_scaled.shape[0]
+k = len(np.unique(y_train))
 
 # define k & map diff species to numbers (0,1,2)
 k = len(y.unique())
