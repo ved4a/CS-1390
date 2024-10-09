@@ -87,6 +87,7 @@ def train(model, all_x, all_y):
 perceptron = Perceptron(num_features=2)
 num_iterations = train(perceptron, X_train, y_train)
 
-# print results
+# Print results: θ, t at α
+print(f"Learning Rate: {perceptron.learning_rate}")
 print(f"Number of iterations until convergence: {num_iterations}")
 print(f"Theta: {perceptron.weights}, Bias: {perceptron.bias}")
