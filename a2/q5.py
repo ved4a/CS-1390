@@ -28,3 +28,5 @@ y_test_2 = y_test_2.reset_index(drop=True)
 y_test_3 = y_test_3.reset_index(drop=True)
 
 # Univariate Feature Selection
+features = ['X2 house age', 'X3 distance to the nearest MRT station', 'X4 number of convenience stores', 'X5 latitude', 'X6 longitude']
+training_errors = {} # dictionary
