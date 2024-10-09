@@ -35,3 +35,17 @@ def calculate_mse(y_true, y_predicted):
     n = len(y_true)
     mse = np.sum((y_true - y_predicted) ** 2) / n
     return mse
+
+def simple_linear_regression(X, y):
+    n = len(y)
+
+    X_mean = np.mean(X)
+    y_mean = np.mean(y)
+
+    numerator = np.sum((X - X_mean) * (y - y_mean))
+    denominator = np.sum((X - X_mean) ** 2)
+
+    theta1 = numerator / denominator
+    theta0 = y_mean - theta1 * X_mean
+
+    return theta0, theta1
