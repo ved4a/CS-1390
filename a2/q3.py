@@ -66,5 +66,15 @@ class Perceptron:
             prediction = 0
         
         return prediction
+    
+    def update(self, x, true_y):
+        prediction = self.forward(x)
+        error = true_y - prediction
+
+        self.bias += error
+        for i, _ in enumerate(self.weights):
+            self.weights[i] += error * x[i]
+        
+        return error
 
 perceptron = Perceptron(num_features=2)
