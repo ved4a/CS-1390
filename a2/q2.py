@@ -2,7 +2,6 @@ from ucimlrepo import fetch_ucirepo
 
 import pandas as pd
 import numpy as np
-import math
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
   
@@ -119,3 +118,7 @@ theta = np.zeros((k, n + 1))
 
 # apply gradient descent function
 theta_hat = gradient_descent(theta, X_train_scaled, y_train, alpha=0.1, iters=500)
+
+# print theta values
+print("Final theta values:")
+print(theta_hat)
