@@ -119,6 +119,6 @@ theta = np.zeros((k, n + 1))
 # apply gradient descent function
 theta_hat = gradient_descent(theta, X_train_scaled, y_train, alpha=0.1, iters=500)
 
-# print theta values
-print("Final theta values:")
+# print theta hat values
+print("Final theta hat values:")
 print(theta_hat)
