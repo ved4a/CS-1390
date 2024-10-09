@@ -138,6 +138,10 @@ def predict(X, theta):
 # make prediction on test set
 y_predicted = predict(X_test_scaled, theta_hat)
 
-# Print the predicted classes and actual classes for comparison
+# print the predicted classes and actual classes for comparison
 print("Predicted classes:", y_predicted)
 print("Actual classes:", y_test.values)
+
+# compute misclassification fractions (aka accuracy, 2 d.p.)
+accuracy = np.mean(y_predicted == y_test.values) * 100
+print(f"Model accuracy: {accuracy:.2f}%")
