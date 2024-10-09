@@ -56,3 +56,38 @@ for feature, error in training_errors.items():
 best_feature = min(training_errors, key=training_errors.get)
 best_error = training_errors[best_feature]
 print(f"The feature with the lowest MSE is '{best_feature}' with an MSE of {best_error:.2f}.") # 2 d.p.
+
+# Incremental Feature Addition
+
+remaining_features = [f for f in features if f != best_feature]  # everything except X3
+selected_features = [best_feature]  # start w X3
+incremental_training_errors = {} # dictionary
+
+for _ in range(len(remaining_features)):
+    errors_with_new_feature = {}  # dictionary
+    
+    for feature in remaining_features:
+        X_current = X_train_1[selected_features + [feature]]
+        
+        model = LinearRegression()
+        model.fit(X_current, y_train_1)
+        
+        y_train_predict = model.predict(X_current)
+        mse_train = calculate_mse(y_train_1, y_train_predict)
+        
+        errors_with_new_feature[feature] = mse_train
+    
+    best_new_feature = min(errors_with_new_feature, key=errors_with_new_feature.get)
+    best_new_error = errors_with_new_feature[best_new_feature]
+    
+    selected_features.append(best_new_feature)
+    
+    remaining_features.remove(best_new_feature)
+    
+    incremental_training_errors[', '.join(selected_features)] = best_new_error
+
+    print(f"Added '{best_new_feature}' to the model. New training error: {best_new_error:.2f}")
+
+print("\nIncremental Feature Addition Results:")
+for feature_set, error in incremental_training_errors.items():
+    print(f"Features: {feature_set} | Training Error: {error:.2f}")
