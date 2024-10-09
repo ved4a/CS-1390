@@ -44,6 +44,10 @@ y = y.map({'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2})
 # specify the random state as answer to the ultimate question of life, the universe, and everything
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
+# resetting indices
+y_train = y_train.reset_index(drop=True)
+y_test = y_test.reset_index(drop=True)
+
 # Implementing feature scaling using min-max scaling
 scaler = MinMaxScaler()
 X_train_scaled = scaler.fit_transform(X_train)
