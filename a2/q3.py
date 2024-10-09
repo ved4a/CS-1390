@@ -78,3 +78,13 @@ class Perceptron:
         return error
 
 perceptron = Perceptron(num_features=2)
+
+def train(model, all_x, all_y, iterations):
+    for iteration in range(iterations):
+        error_count = 0
+
+        for x, y in zip(all_x, all_y):
+            error = model.update(x, y)
+            error_count += abs(error)
+        
+        print(f"Iteration {iteration + 1} errors {error_count}")
