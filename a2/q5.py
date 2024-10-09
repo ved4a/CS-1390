@@ -62,3 +62,8 @@ for feature in features:
 # print training error for each lin reg w respective feature
 for feature, error in training_errors.items():
     print(f"Training error (MSE) for {feature}: {error:.4f}")
+
+# identify the feature with the lowest training error
+best_feature = min(training_errors, key=training_errors.get)
+best_error = training_errors[best_feature]
+print(f"The feature with lowest MSE is '{best_feature}' with an MSE of {best_error:.4f}.")
