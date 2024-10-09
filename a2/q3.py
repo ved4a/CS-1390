@@ -97,3 +97,5 @@ def get_accuracy(model, all_x, all_y):
         correct += int(prediction == y)
     
     return correct / len(all_y)
+
+train_accuracy = get_accuracy(perceptron, X_train, y_train)
