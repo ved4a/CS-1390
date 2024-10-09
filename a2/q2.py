@@ -12,6 +12,7 @@ iris = fetch_ucirepo(id=53)
 # Data (as pandas dataframes) 
 X = iris.data.features 
 y = iris.data.targets
+y = y.iloc[:, 0]
 
 # Examine structure of data
 # check dimensions
@@ -101,7 +102,7 @@ def h_theta(x, theta):
     return h_matrix
 
 # define features and training examples
-n = X_train_scaled.shape[1] - 1 # to account for bias term
+n = X_train_scaled.shape[1] # to account for bias term
 m = X_train_scaled.shape[0]
 k = len(np.unique(y_train))
 
@@ -109,8 +110,8 @@ k = len(np.unique(y_train))
 X_train_scaled = np.c_[np.ones(X_train_scaled.shape[0]), X_train_scaled]
 X_test_scaled = np.c_[np.ones(X_test_scaled.shape[0]), X_test_scaled]
 
-# initialize θ as empty matrix
-theta = np.empty((k, n + 1))
+# initialize θ as zeros matrix
+theta = np.zeros((k, n + 1))
 
 # apply gradient descent function
 theta_hat = gradient_descent(theta, X_train_scaled, y_train, alpha=0.1, iters=500)
