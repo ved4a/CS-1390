@@ -71,15 +71,20 @@ class Perceptron:
 
 perceptron = Perceptron(num_features=2)
 
-def train(model, all_x, all_y, iterations):
-    for iteration in range(iterations):
+def train(model, all_x, all_y):
+    iteration = 0
+    while True:
+        iteration += 1
         error_count = 0
-
         for x, y in zip(all_x, all_y):
             error = model.update(x, y)
             error_count += abs(error)
-        
-        print(f"Iteration {iteration + 1} errors {error_count}")
+        print(f"Iteration {iteration} errors {error_count}")
+
+        # stop if no errors
+        if error_count == 0:
+            break
+    return iteration
 
 def get_accuracy(model, all_x, all_y):
     correct = 0.0
