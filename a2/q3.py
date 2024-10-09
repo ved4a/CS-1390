@@ -18,7 +18,8 @@ y_train = df['result'].values
 plt.plot (
     X_train[y_train == 0, 0],
     X_train[y_train == 0, 1],
-    marker = ".b",
+    marker = ".",
+    color = "b",
     markersize = 10,
     linestyle = "",
     label = "Class 0",
@@ -28,7 +29,8 @@ plt.plot (
 plt.plot (
     X_train[y_train == 1, 0],
     X_train[y_train == 1, 1],
-    marker = ".m",
+    marker = ".",
+    color = "m",
     markersize = 10,
     linestyle = "",
     label = "Class 1",
