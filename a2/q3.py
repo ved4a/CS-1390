@@ -54,5 +54,17 @@ class Perceptron:
         self.num_features = num_features
         self.weights = [1.0 for _ in range(num_features)]
         self.bias = 0.0
+    
+    def forward(self, x):
+        weighted_sum = self.bias
+        for i, _ in enumerate(self.weights):
+            weighted_sum += x[i] * self.weights[i]
+        
+        if weighted_sum > 0.0:
+            prediction = 1
+        else:
+            prediction = 0
+        
+        return prediction
 
 perceptron = Perceptron(num_features=2)
