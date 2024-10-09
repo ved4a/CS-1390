@@ -58,3 +58,7 @@ for feature in features:
     
     mse_train = calculate_mse(y_train_1.values, y_predicted_train)
     training_errors[feature] = mse_train
+
+# print training error for each lin reg w respective feature
+for feature, error in training_errors.items():
+    print(f"Training error (MSE) for {feature}: {error:.4f}")
