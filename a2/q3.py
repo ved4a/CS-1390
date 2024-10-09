@@ -47,3 +47,12 @@ plt.ylabel("Feature $y$", fontsize = 12)
 
 plt.grid()
 plt.show()
+
+# Implement perceptron
+class Perceptron:
+    def __init__(self, num_features):
+        self.num_features = num_features
+        self.weights = [1.0 for _ in range(num_features)]
+        self.bias = 0.0
+
+perceptron = Perceptron(num_features=2)
