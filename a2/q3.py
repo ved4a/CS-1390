@@ -23,3 +23,13 @@ plt.plot (
     linestyle = "",
     label = "Class 0",
 )
+
+# plot Class 1
+plt.plot (
+    X_train[y_train == 1, 0],
+    X_train[y_train == 1, 1],
+    marker = ".m",
+    markersize = 5,
+    linestyle = "",
+    label = "Class 1",
+)
