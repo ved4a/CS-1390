@@ -152,3 +152,18 @@ for split_idx, (X_train, X_test, y_train, y_test) in enumerate(train_test_splits
     
     training_errors_per_split.append(training_errors)
     testing_errors_per_split.append(testing_errors)
+
+# Data Visualization
+feature_steps = [1, 2, 3, 4, 5]
+
+for i in range(len(train_test_splits)):
+    plt.figure(figsize=(8, 6))
+    plt.plot(feature_steps, training_errors_per_split[i], label='Training Error', marker='o')
+    plt.plot(feature_steps, testing_errors_per_split[i], label='Testing Error', marker='o')
+    
+    plt.title(f"Training and Testing Errors vs. Number of Features (Split {i+1})")
+    plt.xlabel("Number of Features")
+    plt.ylabel("Mean Squared Error (MSE)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
