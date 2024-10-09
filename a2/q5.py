@@ -49,3 +49,12 @@ def simple_linear_regression(X, y):
     theta0 = y_mean - theta1 * X_mean
 
     return theta0, theta1
+
+for feature in features:
+    X_feature = X_train_1[feature].values
+    theta0, theta1 = simple_linear_regression(X_feature, y_train_1.values)  # Use .values to get NumPy array
+    
+    y_predicted_train = theta0 + theta1 * X_feature
+    
+    mse_train = calculate_mse(y_train_1.values, y_predicted_train)
+    training_errors[feature] = mse_train
