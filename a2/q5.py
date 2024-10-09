@@ -50,7 +50,7 @@ for feature in features:
 
 # print training error for each linear regression with the respective feature
 for feature, error in training_errors.items():
-    print(f"Training error (MSE) for {feature}: {error:.2f}") # 2 d.p.
+    print(f"Training error for {feature}: {error:.2f}") # 2 d.p.
 
 # Identify the feature with the lowest training error
 best_feature = min(training_errors, key=training_errors.get)
