@@ -93,3 +93,56 @@ for _ in range(len(remaining_features)):
 print("\nIncremental Feature Addition Results:")
 for feature_set, error in incremental_training_errors.items():
     print(f"Features: {feature_set} | Training Error: {error:.2f}")
+
+# Model Evaluation
+train_test_splits = [(X_train_1, X_test_1, y_train_1, y_test_1),
+                     (X_train_2, X_test_2, y_train_2, y_test_2),
+                     (X_train_3, X_test_3, y_train_3, y_test_3)]
+
+training_errors_per_split = []
+testing_errors_per_split = []
+
+for X_train, X_test, y_train, y_test in train_test_splits:
+    remaining_features = [f for f in features if f != best_feature]
+    selected_features = [best_feature]
+    
+    training_errors = []
+    testing_errors = []
+    
+    for _ in range(len(remaining_features) + 1):
+        X_current_train = X_train[selected_features]
+        X_current_test = X_test[selected_features]
+        
+        model = LinearRegression()
+        model.fit(X_current_train, y_train)
+        
+        # training error
+        y_train_predict = model.predict(X_current_train)
+        mse_train = calculate_mse(y_train, y_train_predict)
+        training_errors.append(mse_train)
+        
+        # testing error
+        y_test_predict = model.predict(X_current_test)
+        mse_test = calculate_mse(y_test, y_test_predict)
+        testing_errors.append(mse_test)
+        
+        if remaining_features:
+            errors_with_new_feature = {}  # dictionary
+            
+            for feature in remaining_features:
+                X_current = X_train[selected_features + [feature]]
+                
+                model = LinearRegression()
+                model.fit(X_current, y_train)
+                
+                y_train_predict = model.predict(X_current)
+                mse_train = calculate_mse(y_train, y_train_predict)
+                
+                errors_with_new_feature[feature] = mse_train
+            
+            best_new_feature = min(errors_with_new_feature, key=errors_with_new_feature.get)
+            selected_features.append(best_new_feature)
+            remaining_features.remove(best_new_feature)
+    
+    training_errors_per_split.append(training_errors)
+    testing_errors_per_split.append(testing_errors)
