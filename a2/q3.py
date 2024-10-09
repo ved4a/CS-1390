@@ -84,4 +84,5 @@ def train(model, all_x, all_y):
             break
     return iteration
 
-train_accuracy = get_accuracy(perceptron, X_train, y_train)
+perceptron = Perceptron(num_features=2)
+num_iterations = train(perceptron, X_train, y_train)
