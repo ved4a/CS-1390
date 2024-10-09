@@ -57,16 +57,8 @@ class Perceptron:
         self.learning_rate = 0.5
     
     def forward(self, x):
-        weighted_sum = self.bias
-        for i, _ in enumerate(self.weights):
-            weighted_sum += x[i] * self.weights[i]
-        
-        if weighted_sum > 0.0:
-            prediction = 1
-        else:
-            prediction = 0
-        
-        return prediction
+        weighted_sum = np.dot(x, self.weights) + self.bias
+        return 1 if weighted_sum > 0 else 0
     
     def update(self, x, true_y):
         prediction = self.forward(x)
