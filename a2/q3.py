@@ -64,9 +64,8 @@ class Perceptron:
         prediction = self.forward(x)
         error = true_y - prediction
 
-        self.bias += error
-        for i, _ in enumerate(self.weights):
-            self.weights[i] += error * x[i]
+        self.bias += self.learning_rate * error
+        self.weights += self.learning_rate * error * x
         
         return error
 
