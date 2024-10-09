@@ -134,3 +134,10 @@ def predict(X, theta):
         predictions.append(predicted_class)
     
     return np.array(predictions)
+
+# make prediction on test set
+y_predicted = predict(X_test_scaled, theta_hat)
+
+# Print the predicted classes and actual classes for comparison
+print("Predicted classes:", y_predicted)
+print("Actual classes:", y_test.values)
