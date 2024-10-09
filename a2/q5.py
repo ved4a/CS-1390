@@ -32,6 +32,27 @@ features = ['X2 house age', 'X3 distance to the nearest MRT station', 'X4 number
 training_errors = {} # dictionary
 
 def calculate_mse(y_true, y_predicted):
+    y_true = np.array(y_true)
+    y_predicted = np.array(y_predicted)
     n = len(y_true)
     mse = np.sum((y_true - y_predicted) ** 2) / n
     return mse
+
+for feature in features:
+    X_feature = X_train_1[[feature]]
+    model = LinearRegression()
+    model.fit(X_feature, y_train_1)
+    
+    y_train_predict = model.predict(X_feature)
+    mse_train = calculate_mse(y_train_1, y_train_predict)
+
+    training_errors[feature] = mse_train
+
+# print training error for each linear regression with the respective feature
+for feature, error in training_errors.items():
+    print(f"Training error (MSE) for {feature}: {error:.2f}") # 2 d.p.
+
+# Identify the feature with the lowest training error
+best_feature = min(training_errors, key=training_errors.get)
+best_error = training_errors[best_feature]
+print(f"The feature with the lowest MSE is '{best_feature}' with an MSE of {best_error:.2f}.") # 2 d.p.
