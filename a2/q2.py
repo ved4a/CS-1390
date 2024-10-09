@@ -122,3 +122,15 @@ theta_hat = gradient_descent(theta, X_train_scaled, y_train, alpha=0.1, iters=50
 # print theta hat values
 print("Final theta hat values:")
 print(theta_hat)
+
+# Testing the model
+# modify the h theta function to create prediction function
+def predict(X, theta):
+    predictions = []
+
+    for x in X:
+        h_matrix = h_theta(x, theta)
+        predicted_class = np.argmax(h_matrix)
+        predictions.append(predicted_class)
+    
+    return np.array(predictions)
