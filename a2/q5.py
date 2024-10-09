@@ -3,7 +3,7 @@ from ucimlrepo import fetch_ucirepo
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-  
+from sklearn.linear_model import LinearRegression  
 # fetch dataset 
 real_estate_valuation = fetch_ucirepo(id=477) 
   
@@ -26,3 +26,5 @@ y_train_3 = y_train_3.reset_index(drop=True)
 y_test_1 = y_test_1.reset_index(drop=True)
 y_test_2 = y_test_2.reset_index(drop=True)
 y_test_3 = y_test_3.reset_index(drop=True)
+
+# Univariate Feature Selection
