@@ -69,8 +69,6 @@ class Perceptron:
         
         return error
 
-perceptron = Perceptron(num_features=2)
-
 def train(model, all_x, all_y):
     iteration = 0
     while True:
@@ -85,14 +83,5 @@ def train(model, all_x, all_y):
         if error_count == 0:
             break
     return iteration
-
-def get_accuracy(model, all_x, all_y):
-    correct = 0.0
-
-    for x, y in zip(all_x, all_y):
-        prediction = model.forward(x)
-        correct += int(prediction == y)
-    
-    return correct / len(all_y)
 
 train_accuracy = get_accuracy(perceptron, X_train, y_train)
