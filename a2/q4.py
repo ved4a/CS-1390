@@ -50,5 +50,5 @@ lambda_2 = epsilon_hat + epsilon
 
 # Print the results
 print(f"Training Error: {epsilon_hat:.4f}")
-print(f"Lambda 1: {lambda_1:.4f}")
-print(f"Lambda 2: {lambda_2:.4f}")
+print(f"Lambda 1: {lambda_1:.4f}") # -0.0348
+print(f"Lambda 2: {lambda_2:.4f}") # 0.1108
