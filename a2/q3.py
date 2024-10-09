@@ -52,8 +52,9 @@ plt.show()
 class Perceptron:
     def __init__(self, num_features):
         self.num_features = num_features
-        self.weights = [1.0 for _ in range(num_features)]
+        self.weights = np.array([1.0, 1.0])
         self.bias = 0.0
+        self.learning_rate = 0.5
     
     def forward(self, x):
         weighted_sum = self.bias
