@@ -88,3 +88,12 @@ def train(model, all_x, all_y, iterations):
             error_count += abs(error)
         
         print(f"Iteration {iteration + 1} errors {error_count}")
+
+def get_accuracy(model, all_x, all_y):
+    correct = 0.0
+
+    for x, y in zip(all_x, all_y):
+        prediction = model.forward(x)
+        correct += int(prediction == y)
+    
+    return correct / len(all_y)
