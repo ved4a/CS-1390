@@ -102,32 +102,38 @@ train_test_splits = [(X_train_1, X_test_1, y_train_1, y_test_1),
 training_errors_per_split = []
 testing_errors_per_split = []
 
-for X_train, X_test, y_train, y_test in train_test_splits:
+for split_idx, (X_train, X_test, y_train, y_test) in enumerate(train_test_splits):
+    print(f"\nEvaluating Train-Test Split {split_idx + 1}:")
+    
     remaining_features = [f for f in features if f != best_feature]
     selected_features = [best_feature]
     
     training_errors = []
     testing_errors = []
     
-    for _ in range(len(remaining_features) + 1):
+    for step in range(len(remaining_features) + 1):
         X_current_train = X_train[selected_features]
         X_current_test = X_test[selected_features]
         
         model = LinearRegression()
         model.fit(X_current_train, y_train)
         
-        # training error
+        # Training error
         y_train_predict = model.predict(X_current_train)
         mse_train = calculate_mse(y_train, y_train_predict)
         training_errors.append(mse_train)
         
-        # testing error
+        # Testing error
         y_test_predict = model.predict(X_current_test)
         mse_test = calculate_mse(y_test, y_test_predict)
         testing_errors.append(mse_test)
         
+        print(f"Step {step + 1}: Features = {selected_features}")
+        print(f"  Training Error (MSE): {mse_train:.4f}")
+        print(f"  Testing Error (MSE): {mse_test:.4f}\n")
+        
         if remaining_features:
-            errors_with_new_feature = {}  # dictionary
+            errors_with_new_feature = {}
             
             for feature in remaining_features:
                 X_current = X_train[selected_features + [feature]]
