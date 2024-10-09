@@ -36,3 +36,19 @@ errors = get_training_errors(X_train, y_train, thetas)
 # Print errors
 for i, error in enumerate(errors, start=1):
     print(f"Training error: {error:.4f}")
+
+n = 500
+delta = 0.01
+epsilon_hat = 0.0380
+
+# calculate error margin
+epsilon = np.sqrt(-np.log(delta/2) / (2 * n))
+
+# calculate bounds
+lambda_1 = epsilon_hat - epsilon
+lambda_2 = epsilon_hat + epsilon
+
+# Print the results
+print(f"Training Error: {epsilon_hat:.4f}")
+print(f"Lambda 1: {lambda_1:.4f}")
+print(f"Lambda 2: {lambda_2:.4f}")
