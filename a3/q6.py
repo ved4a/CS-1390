@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 
 # PART A
 
@@ -85,6 +86,26 @@ plt.scatter(x1[predicted_classes_extended == 1], x2[predicted_classes_extended =
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels (Part E)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# PART G
+
+# fit linear SVM model
+svc_linear = SVC(kernel='linear')
+svc_linear.fit(X, y)
+
+# predict class labels
+predicted_classes_svm = svc_linear.predict(X)
+
+# plot
+plt.figure(figsize=(8, 6))
+plt.scatter(x1[predicted_classes_svm == 0], x2[predicted_classes_svm == 0], color='blue', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_svm == 1], x2[predicted_classes_svm == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.title('Predicted Class Labels (Linear SVM)')
 plt.legend()
 plt.grid(True)
 plt.show()
