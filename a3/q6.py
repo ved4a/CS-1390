@@ -54,3 +54,21 @@ plt.title('Predicted Class Labels')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+# PART E
+
+# create new features
+x1_squared = x1 ** 2
+x2_squared = x2 ** 2
+x1_x2 = x1 * x2
+
+# wanna avoid log(0)
+log_x1 = np.log(x1 + 1e-10)
+log_x2 = np.log(x2 + 1e-10)
+
+# make 1 big dataset
+X_extended = np.column_stack((x1, x2, x1_squared, x2_squared, x1_x2, log_x1, log_x2))
+
+# fit logistic regression
+model_extended = LogisticRegression()
+model_extended.fit(X_extended, y)
