@@ -97,12 +97,12 @@ svc_linear = SVC(kernel='linear')
 svc_linear.fit(X, y)
 
 # predict class labels
-predicted_classes_svm = svc_linear.predict(X)
+predicted_classes_svc = svc_linear.predict(X)
 
 # plot
 plt.figure(figsize=(8, 6))
-plt.scatter(x1[predicted_classes_svm == 0], x2[predicted_classes_svm == 0], color='blue', label='Predicted Class 0', alpha=0.6)
-plt.scatter(x1[predicted_classes_svm == 1], x2[predicted_classes_svm == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.scatter(x1[predicted_classes_svc == 0], x2[predicted_classes_svc == 0], color='blue', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_svc == 1], x2[predicted_classes_svc == 1], color='red', label='Predicted Class 1', alpha=0.6)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels (Linear SVM)')
