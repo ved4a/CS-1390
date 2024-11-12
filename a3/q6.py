@@ -38,3 +38,19 @@ y = classes
 
 model = LogisticRegression()
 model.fit(X, y)
+
+# PART D
+
+# predict class labels
+predicted_classes = model.predict(X)
+
+# plot predicted labels
+plt.figure(figsize=(8, 6))
+plt.scatter(x1[predicted_classes == 0], x2[predicted_classes == 0], color='blue', label='Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes == 1], x2[predicted_classes == 1], color='red', label='Class 1', alpha=0.6)
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.title('Predicted Class Labels')
+plt.legend()
+plt.grid(True)
+plt.show()
