@@ -109,3 +109,24 @@ plt.title('Predicted Class Labels (Linear SVM)')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
+# PART H
+
+# fit RBF SVM model
+svc_rbf = SVC(kernel='rbf') # this is the gaussian kernel
+svc_rbf.fit(X, y)
+
+# predict class labels
+predicted_classes_rbf = svc_rbf.predict(X)
+
+# Plot
+plt.figure(figsize=(8, 6))
+plt.scatter(x1[predicted_classes_rbf == 0], x2[predicted_classes_rbf == 0], color='blue', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_rbf == 1], x2[predicted_classes_rbf == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.title('Predicted Class Labels (Non-Linear SVM)')
+plt.legend()
+plt.grid(True)
+plt.show()
