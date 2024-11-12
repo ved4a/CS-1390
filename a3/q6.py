@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
 
 # PART A
 
@@ -28,3 +29,12 @@ plt.title('Data Points')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+# PART C
+
+# combine into 1 dataset to run regression
+X = np.column_stack((x1, x2))
+y = classes
+
+model = LogisticRegression()
+model.fit(X, y)
