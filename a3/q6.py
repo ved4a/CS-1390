@@ -72,3 +72,19 @@ X_extended = np.column_stack((x1, x2, x1_squared, x2_squared, x1_x2, log_x1, log
 # fit logistic regression
 model_extended = LogisticRegression()
 model_extended.fit(X_extended, y)
+
+# PART F
+
+# predict class labels
+predicted_classes_extended = model_extended.predict(X_extended)
+
+# plot
+plt.figure(figsize=(8, 6))
+plt.scatter(x1[predicted_classes_extended == 0], x2[predicted_classes_extended == 0], color='blue', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_extended == 1], x2[predicted_classes_extended == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.title('Predicted Class Labels (Part E)')
+plt.legend()
+plt.grid(True)
+plt.show()
