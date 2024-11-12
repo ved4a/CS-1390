@@ -47,8 +47,8 @@ predicted_classes = model.predict(X)
 
 # plot predicted labels
 plt.figure(figsize=(8, 6))
-plt.scatter(x1[predicted_classes == 0], x2[predicted_classes == 0], color='blue', label='Class 0', alpha=0.6)
-plt.scatter(x1[predicted_classes == 1], x2[predicted_classes == 1], color='red', label='Class 1', alpha=0.6)
+plt.scatter(x1[predicted_classes == 0], x2[predicted_classes == 0], color='red', label='Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes == 1], x2[predicted_classes == 1], color='blue', label='Class 1', alpha=0.6)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels')
@@ -81,8 +81,8 @@ predicted_classes_extended = model_extended.predict(X_extended)
 
 # plot
 plt.figure(figsize=(8, 6))
-plt.scatter(x1[predicted_classes_extended == 0], x2[predicted_classes_extended == 0], color='blue', label='Predicted Class 0', alpha=0.6)
-plt.scatter(x1[predicted_classes_extended == 1], x2[predicted_classes_extended == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.scatter(x1[predicted_classes_extended == 0], x2[predicted_classes_extended == 0], color='cyan', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_extended == 1], x2[predicted_classes_extended == 1], color='magenta', label='Predicted Class 1', alpha=0.6)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels (Part E)')
@@ -101,8 +101,8 @@ predicted_classes_svc = svc_linear.predict(X)
 
 # plot
 plt.figure(figsize=(8, 6))
-plt.scatter(x1[predicted_classes_svc == 0], x2[predicted_classes_svc == 0], color='blue', label='Predicted Class 0', alpha=0.6)
-plt.scatter(x1[predicted_classes_svc == 1], x2[predicted_classes_svc == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.scatter(x1[predicted_classes_svc == 0], x2[predicted_classes_svc == 0], color='yellow', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_svc == 1], x2[predicted_classes_svc == 1], color='green', label='Predicted Class 1', alpha=0.6)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels (Linear SVM)')
@@ -122,8 +122,8 @@ predicted_classes_rbf = svc_rbf.predict(X)
 
 # Plot
 plt.figure(figsize=(8, 6))
-plt.scatter(x1[predicted_classes_rbf == 0], x2[predicted_classes_rbf == 0], color='blue', label='Predicted Class 0', alpha=0.6)
-plt.scatter(x1[predicted_classes_rbf == 1], x2[predicted_classes_rbf == 1], color='red', label='Predicted Class 1', alpha=0.6)
+plt.scatter(x1[predicted_classes_rbf == 0], x2[predicted_classes_rbf == 0], color='green', label='Predicted Class 0', alpha=0.6)
+plt.scatter(x1[predicted_classes_rbf == 1], x2[predicted_classes_rbf == 1], color='yellow', label='Predicted Class 1', alpha=0.6)
 plt.xlabel('$x_1$')
 plt.ylabel('$x_2$')
 plt.title('Predicted Class Labels (Non-Linear SVM)')
