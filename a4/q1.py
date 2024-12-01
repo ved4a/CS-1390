@@ -63,3 +63,29 @@ def k_means(data, k=4, max_iters=100, epsilon=1e-6):
             cluster_labels[idx] = cluster_idx
 
     return centroids, cluster_labels
+
+
+def k_means_multiple_initializations(data, k=4, initializations=5):
+    best_centroids = None
+    best_labels = None
+    # Inertia is the sum of squared distances to centroids:
+    # inertia = ΣΣ||xi - μj||^2, where first Σ is from j=1 to k, and second Σ is i ∈ cluster j
+    best_inertia = float('inf') 
+
+    for i in range(initializations):
+        print(f"Initialization {i + 1}:")
+        centroids, labels = k_means(data, k)
+        
+        # Compute inertia
+        inertia = sum(
+            np.sum((data[np.where(labels == j)] - centroids[j])**2)
+            for j in range(k)
+        )
+        print(f"Inertia: {inertia}")
+        
+        if inertia < best_inertia:
+            best_inertia = inertia
+            best_centroids = centroids
+            best_labels = labels
+
+    return best_centroids, best_labels
