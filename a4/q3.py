@@ -102,3 +102,37 @@ class NeuralNetwork:
         self.b1 -= learning_rate * self.db1
         self.W2 -= learning_rate * self.dW2
         self.b2 -= learning_rate * self.db2
+
+# Training and Optimization
+def train_nn(nn, X_train, y_train, X_val, y_val, learning_rate, max_iters=500):
+    train_losses, val_losses = [], []
+    best_val_loss = float('inf')
+    patience, wait = 10, 0
+
+    for i in range(max_iters):
+        y_train_hat = nn.forward(X_train)
+        train_loss = nn.compute_loss(y_train, y_train_hat)
+        nn.backprop(X_train, y_train, y_train_hat)
+
+        nn.update_weights(learning_rate)
+
+        y_val_hat = nn.forward(X_val)
+        val_loss = nn.compute_loss(y_val, y_val_hat)
+
+        train_losses.append(train_loss)
+        val_losses.append(val_loss)
+
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            wait = 0
+        else:
+            wait += 1
+            if wait >= patience:
+                print(f"Early stopping at iteration {i}")
+                break
+
+        if i % 10 == 0:
+            print(f"Iteration {i}: Training Loss = {train_loss}, Validation Loss = {val_loss}")
+
+    return train_losses, val_losses
+
