@@ -159,3 +159,34 @@ y_test_pred = np.argmax(y_test_hat, axis=1)
 
 test_accuracy = np.mean(y_test_pred == binary_test_labels)
 print(f"Test Accuracy: {test_accuracy}")
+
+# Forward pass on the test set
+y_test_hat = nn.forward(binary_test_images)
+y_test_pred = np.argmax(y_test_hat, axis=1)
+
+# Identify correctly and incorrectly classified examples
+correct_indices = np.where(y_test_pred == binary_test_labels)[0]
+incorrect_indices = np.where(y_test_pred != binary_test_labels)[0]
+
+# Select 5 examples from each
+correct_examples = correct_indices[:5]
+incorrect_examples = incorrect_indices[:5]
+
+# Plotting the examples
+import matplotlib.pyplot as plt
+
+def plot_examples(indices, title):
+    plt.figure(figsize=(10, 5))
+    for i, idx in enumerate(indices):
+        plt.subplot(1, 5, i + 1)
+        plt.imshow(binary_test_images[idx].reshape(28, 28), cmap='gray')
+        plt.title(f"Label: {binary_test_labels[idx]}\nPred: {y_test_pred[idx]}")
+        plt.axis('off')
+    plt.suptitle(title)
+    plt.show()
+
+# Plot correct examples
+plot_examples(correct_examples, "Correctly Classified Digits")
+
+# Plot incorrect examples
+plot_examples(incorrect_examples, "Incorrectly Classified Digits")
