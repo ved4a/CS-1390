@@ -23,7 +23,7 @@ print("First 5 Rows of Scaled Data: \n", scaled_df.head())
 
 # K-Means Implementation
 def euclidean_distance(x1, x2):
-    return np.sqrt(np.sum((x1 - x2) ** 2))
+    return np.sqrt(np.sum((x1 - x2) ** 2, axis=1))
 
 def k_means(data, k=4, max_iters=100, epsilon=1e-6):
     # Randomly initialization
@@ -89,3 +89,9 @@ def k_means_multiple_initializations(data, k=4, initializations=5):
             best_labels = labels
 
     return best_centroids, best_labels
+
+final_centroids, final_labels = k_means_multiple_initializations(scaled_data)
+print("Final Centroids:")
+print(final_centroids)
+print("Final Labels:")
+print(final_labels)
