@@ -28,3 +28,10 @@ X = scaler.fit_transform(X)
 
 X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+
+# Neural Network Architecture
+model = models.Sequential([
+    layers.Dense(300, activation='sigmoid', kernel_regularizer=regularizers.l2(0.001), input_shape=(X.shape[1],)),
+    layers.Dense(300, activation='sigmoid', kernel_regularizer=regularizers.l2(0.001)),
+    layers.Dense(1)
+])
