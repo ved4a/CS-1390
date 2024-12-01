@@ -49,3 +49,56 @@ X_train, X_val, y_train, y_val = train_test_split(
 X_train = X_train / 255.0
 X_val = X_val / 255.0
 binary_test_images = binary_test_images / 255.0
+
+# Neural Network Implementation
+class NeuralNetwork:
+    def __init__(self, input_size, hidden_size, output_size, reg_lambda=0.4):
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.output_size = output_size
+        self.reg_lambda = reg_lambda
+
+        limit_hidden = np.sqrt(6 / (input_size + hidden_size))
+        limit_output = np.sqrt(6 / (hidden_size + output_size))
+        self.W1 = np.random.uniform(-limit_hidden, limit_hidden, (input_size, hidden_size))
+        self.b1 = np.zeros(hidden_size)
+        self.W2 = np.random.uniform(-limit_output, limit_output, (hidden_size, output_size))
+        self.b2 = np.zeros(output_size)
+
+    def softmax(self, z):
+        exp_z = np.exp(z - np.max(z, axis=1, keepdims=True))
+        return exp_z / np.sum(exp_z, axis=1, keepdims=True)
+
+    def forward(self, X):
+        self.z1 = np.dot(X, self.W1) + self.b1
+        self.a1 = np.tanh(self.z1)  # Activation function
+        self.z2 = np.dot(self.a1, self.W2) + self.b2
+        self.a2 = self.softmax(self.z2)
+        return self.a2
+
+    def compute_loss(self, y, y_hat):
+        N = y.shape[0]
+        log_probs = -np.log(y_hat[np.arange(N), y])
+        data_loss = np.sum(log_probs) / N
+        reg_loss = (self.reg_lambda / 2) * (np.sum(self.W1**2) + np.sum(self.W2**2))
+        return data_loss + reg_loss
+
+    def backprop(self, X, y, y_hat):
+        N = y.shape[0]
+
+        delta2 = y_hat
+        delta2[np.arange(N), y] -= 1
+        delta2 /= N
+
+        self.dW2 = np.dot(self.a1.T, delta2) + self.reg_lambda * self.W2
+        self.db2 = np.sum(delta2, axis=0)
+
+        delta1 = np.dot(delta2, self.W2.T) * (1 - self.a1**2)
+        self.dW1 = np.dot(X.T, delta1) + self.reg_lambda * self.W1
+        self.db1 = np.sum(delta1, axis=0)
+
+    def update_weights(self, learning_rate):
+        self.W1 -= learning_rate * self.dW1
+        self.b1 -= learning_rate * self.db1
+        self.W2 -= learning_rate * self.dW2
+        self.b2 -= learning_rate * self.db2
