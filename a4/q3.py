@@ -136,3 +136,16 @@ def train_nn(nn, X_train, y_train, X_val, y_val, learning_rate, max_iters=500):
 
     return train_losses, val_losses
 
+input_size = 784
+hidden_size = 200
+output_size = 2
+learning_rate = 0.05
+
+nn = NeuralNetwork(input_size, hidden_size, output_size, reg_lambda=0.4)
+
+# Evaluation and Analysis
+y_test_hat = nn.forward(binary_test_images)
+y_test_pred = np.argmax(y_test_hat, axis=1)
+
+test_accuracy = np.mean(y_test_pred == binary_test_labels)
+print(f"Test Accuracy: {test_accuracy}")
