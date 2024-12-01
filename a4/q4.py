@@ -9,7 +9,7 @@ from keras import layers, models, regularizers
 
 
 # Data Preprocessing
-file_path = "path/to/AirfoilSelfNoise.csv"  # Replace with the correct path
+file_path = "airfoil self noise/AirfoilSelfNoise.csv"  # Replace with the correct path
 data = pd.read_csv(file_path, header=None)
 
 # Assign column names
@@ -56,4 +56,17 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss (MSE)')
 plt.legend()
 plt.title('Training and Validation Loss')
+plt.show()
+
+# Model Evaluation
+test_mse = model.evaluate(X_test, y_test, verbose=0)
+print(f"Test MSE: {test_mse[1]}")
+
+y_pred = model.predict(X_test)
+
+plt.scatter(y_test, y_pred, alpha=0.7)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linestyle='--')
+plt.xlabel('Actual SSPL')
+plt.ylabel('Predicted SSPL')
+plt.title('Predicted vs Actual SSPL')
 plt.show()
