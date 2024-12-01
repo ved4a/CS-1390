@@ -206,3 +206,25 @@ plt.ylabel('Loss')
 plt.title('Learning Rate Comparison')
 plt.legend()
 plt.show()
+
+# Effect of Different Hidden Layers
+hidden_layer_sizes = [100, 200, 300]
+for hidden_size in hidden_layer_sizes:
+    nn = NeuralNetwork(input_size, hidden_size, output_size, reg_lambda=0.4)
+    train_losses, val_losses = train_nn(
+        nn=nn,
+        X_train=X_train,
+        y_train=y_train,
+        X_val=X_val,
+        y_val=y_val,
+        learning_rate=0.05,
+        max_iters=500
+    )
+    plt.plot(train_losses, label=f'Train Hidden={hidden_size}')
+    plt.plot(val_losses, label=f'Val Hidden={hidden_size}')
+
+plt.xlabel('Iterations')
+plt.ylabel('Loss')
+plt.title('Hidden Layer Size Comparison')
+plt.legend()
+plt.show()
