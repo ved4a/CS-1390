@@ -160,19 +160,16 @@ y_test_pred = np.argmax(y_test_hat, axis=1)
 test_accuracy = np.mean(y_test_pred == binary_test_labels)
 print(f"Test Accuracy: {test_accuracy}")
 
-# Forward pass on the test set
+# Correct and Incorrect Examples
 y_test_hat = nn.forward(binary_test_images)
 y_test_pred = np.argmax(y_test_hat, axis=1)
 
-# Identify correctly and incorrectly classified examples
 correct_indices = np.where(y_test_pred == binary_test_labels)[0]
 incorrect_indices = np.where(y_test_pred != binary_test_labels)[0]
 
-# Select 5 examples from each
 correct_examples = correct_indices[:5]
 incorrect_examples = incorrect_indices[:5]
 
-# Plotting the examples
 import matplotlib.pyplot as plt
 
 def plot_examples(indices, title):
@@ -185,8 +182,27 @@ def plot_examples(indices, title):
     plt.suptitle(title)
     plt.show()
 
-# Plot correct examples
 plot_examples(correct_examples, "Correctly Classified Digits")
-
-# Plot incorrect examples
 plot_examples(incorrect_examples, "Incorrectly Classified Digits")
+
+# Effect of Different Learning Rates
+learning_rates = [0.01, 0.05, 0.1]
+for lr in learning_rates:
+    nn = NeuralNetwork(input_size, hidden_size, output_size, reg_lambda=0.4)
+    train_losses, val_losses = train_nn(
+        nn=nn,
+        X_train=X_train,
+        y_train=y_train,
+        X_val=X_val,
+        y_val=y_val,
+        learning_rate=lr,
+        max_iters=500
+    )
+    plt.plot(train_losses, label=f'Train LR={lr}')
+    plt.plot(val_losses, label=f'Val LR={lr}')
+
+plt.xlabel('Iterations')
+plt.ylabel('Loss')
+plt.title('Learning Rate Comparison')
+plt.legend()
+plt.show()
