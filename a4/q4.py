@@ -9,16 +9,16 @@ from keras import layers, models, regularizers
 
 
 # Data Preprocessing
-file_path = "airfoil self noise/AirfoilSelfNoise.csv"  # Replace with the correct path
-data = pd.read_csv(file_path, header=None)
+file_path = "airfoil self noise/AirfoilSelfNoise.csv"
+data = pd.read_csv(file_path)
 
 # Assign column names
-data.columns = [
-    "Frequency (Hz)", "Angle of Attack (degrees)",
-    "Chord Length (m)", "Free-Stream Velocity (m/s)",
-    "Suction Side Displacement Thickness (m)",
-    "Scaled Sound Pressure Level (SSPL)"
-]
+# data.columns = [
+#     "Frequency (Hz)", "Angle of Attack (degrees)",
+#     "Chord Length (m)", "Free-Stream Velocity (m/s)",
+#     "Suction Side Displacement Thickness (m)",
+#     "Scaled Sound Pressure Level (SSPL)"
+# ]
 
 X = data.iloc[:, :-1].values
 y = data.iloc[:, -1].values
