@@ -49,3 +49,27 @@ plt.ylabel("Principal Component 2", fontsize=12)
 plt.legend(title="Cluster", fontsize=10)
 plt.grid()
 plt.show()
+
+# 3D Analysis and Comparison
+pca_3d = PCA(n_components=3)
+data_3d = pca_3d.fit_transform(scaled_data)
+
+kmeans_3d = KMeans(n_clusters=4, random_state=42)
+labels_3d = kmeans_3d.fit_predict(data_3d)
+
+pairwise_combinations = [(0, 1), (0, 2), (1, 2)]
+for x_idx, y_idx in pairwise_combinations:
+    plt.figure(figsize=(8, 6))
+    sns.scatterplot(
+        x=data_3d[:, x_idx], y=data_3d[:, y_idx], hue=labels_3d, palette='viridis', s=100
+    )
+    plt.title(f"3D PCA Pairwise Plot: Component {x_idx+1} vs {y_idx+1}", fontsize=14)
+    plt.xlabel(f"Principal Component {x_idx+1}", fontsize=12)
+    plt.ylabel(f"Principal Component {y_idx+1}", fontsize=12)
+    plt.legend(title="Cluster", fontsize=10)
+    plt.grid()
+    plt.show()
+print("Comparison Insights:")
+print("- Clusters can reveal groups of countries with similar socio-economic and health conditions.")
+print("- PCA clustering reduces complexity but may lose fine-grained details.")
+print("- Both methods should be used to make up for each other's cons.")
